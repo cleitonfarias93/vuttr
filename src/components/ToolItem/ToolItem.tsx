@@ -14,17 +14,21 @@ import './ToolItem.scss';
 
 interface Props {
   tool: ToolEntity;
+  onClickRemove: (tool: ToolEntity) => void;
 }
 
-const ToolItem: React.FC<Props> = ({ tool }) => {
-  console.log('ToolItem');
+const ToolItem: React.FC<Props> = ({ tool, onClickRemove }) => {
+  const handleRemove = () => {
+    onClickRemove(tool);
+  };
+
   return (
     <section className="tool-item">
       <header className="tool-item__header">
         <a className="title" href={tool.link}>
-          <h2>{tool.title}</h2>
+          <h3>{tool.title}</h3>
         </a>
-        <Button className="button-remove">
+        <Button className="button-remove" onClick={handleRemove}>
           <Icon name="close" />
           remove
         </Button>

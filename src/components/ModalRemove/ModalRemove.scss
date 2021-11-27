@@ -1,0 +1,84 @@
+@import 'styles/variables';
+
+.ui.modal.modal-remove {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 80rem;
+  height: 30.6rem;
+
+  padding: 3rem;
+
+  & > * {
+    padding: 0;
+  }
+
+  .header {
+    width: 100%;
+    border: none;
+
+    font-size: 2.6rem;
+    letter-spacing: 0.052rem;
+
+    .icon {
+      color: $red;
+    }
+  }
+
+  .content {
+    width: 100%;
+
+    margin-top: 3rem;
+
+    border: none;
+
+    span {
+      font-size: 2rem;
+      text-align: left;
+      color: $lightInk;
+    }
+  }
+
+  .actions {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0 3rem 3rem 0;
+
+    border: none;
+    background: $white;
+
+    button {
+      min-width: 17.4rem;
+      height: 5rem;
+
+      padding: 0 2.6rem;
+      margin: 0;
+      
+      color: $white;
+      border-radius: 0.5rem;
+      font-size: 1.8rem;
+      line-height: 2.4rem;
+      letter-spacing: 0.036rem;
+    }
+
+    .button-cancel {
+      background-color: $red;
+
+      &:hover {
+        background-color: $darkRed;
+      }
+    }
+
+    .button-success {
+      margin-left: 2.9rem;
+      
+      background-color: $green;
+
+      &:hover {
+        background-color: $darkGreen;
+      }
+    }
+  }
+}
