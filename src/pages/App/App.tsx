@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getTools } from 'services/VuttrService';
 
 // Components
+import Header from 'components/Header/Header';
 import ToolItem from 'components/ToolItem';
 
 // Models
@@ -30,6 +31,7 @@ const App: React.FC = () => {
 
   return (
     <main className="App">
+      <Header title="VUTTR" subTitle="Very Useful Tools to Remember" />
       {tools.map((tool) => (
         <ToolItem key={tool.id} tool={tool} />
       ))}
