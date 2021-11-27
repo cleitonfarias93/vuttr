@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 // Services
 import { getTools } from 'services/VuttrService';
 
-// Semantic UI components
-import { Button } from 'semantic-ui-react';
+// Components
+import ToolItem from 'components/ToolItem';
 
 // Models
 import { ToolEntity } from 'models/toolEntity';
@@ -29,14 +29,11 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="App">
-      <ol>
-        {tools.map((tool) => (
-          <ul key={tool.id}>{tool.description}</ul>
-        ))}
-      </ol>
-      <Button>Entrar</Button>
-    </div>
+    <main className="App">
+      {tools.map((tool) => (
+        <ToolItem key={tool.id} tool={tool} />
+      ))}
+    </main>
   );
 };
 

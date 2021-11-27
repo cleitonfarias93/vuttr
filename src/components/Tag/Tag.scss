@@ -1,0 +1,15 @@
+@import 'styles/variables';
+
+.tag-component {
+  padding: 0.5rem;
+
+  font-size: 1.5rem;
+  background-color: $lightYellow;
+  color: $black;
+  border: solid $lightestInk 0.2rem;
+  border-radius: 0.4rem;
+
+  .icon {
+    margin: 0;
+  }
+}

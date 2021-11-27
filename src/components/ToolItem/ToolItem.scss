@@ -1,0 +1,65 @@
+@import 'styles/variables';
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  width: 50%;
+  height: auto;
+  min-height: 15rem;
+
+  padding: 1.5rem;
+
+  background-color: $white;
+  border: solid $mostDarkestWhite 0.2rem;
+  border-radius: 0.5rem;
+
+  &:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+  &__header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      color: $blue;
+    }
+
+    .button-remove {
+      display: flex;
+      align-items: center;
+
+      outline: 0;
+
+      padding: 0;
+      margin: 0;
+
+      color: $red;
+      background: transparent;
+      font-size: 1.5rem;
+    }
+  }
+
+  &__content {
+    margin: 2rem 0;
+    p {
+      text-align: start;
+      font-weight: bolder;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+
+    :not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+}
