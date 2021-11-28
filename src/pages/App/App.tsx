@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
 // Services
-import { getTools, deleteTool } from 'services/VuttrService';
+import { getTools, deleteTool, getToolsByQuery } from 'services/VuttrService';
 
 // Semantic UI Components
 import { Loader, Dimmer } from 'semantic-ui-react';
 
 // Components
 import Header from 'components/Header/Header';
+import SubHeader from 'components/SubHeader';
 import ToolItem from 'components/ToolItem';
 import ModalRemove from 'components/ModalRemove';
 
 // Models
-import { ToolEntity, ToolModel } from 'models/toolEntity';
+import { ToolEntity, ToolModel, SearchParams } from 'models';
 
 // Styles
 import './App.scss';
@@ -40,15 +41,6 @@ const App: React.FC = () => {
     fetchTools();
   }, []);
 
-  const onRemove = (toolData: ToolEntity) => {
-    setCurrentTool(toolData);
-    setShowModalRemove(true);
-  };
-
-  const onCancelModalRemove = () => {
-    setShowModalRemove(false);
-  };
-
   const onConfirmModalRemove = async () => {
     setLoading(true);
 
@@ -64,21 +56,43 @@ const App: React.FC = () => {
     }
   };
 
-  if (fetching || loading) {
-    return (
-      <Dimmer active>
-        <Loader active inline="centered" />
-      </Dimmer>
-    );
-  }
+  const getToolsBySearch = async (params: SearchParams) => {
+    setLoading(true);
+    try {
+      const response = await getToolsByQuery(params);
+      setTools(response.data);
+    } catch (error) {
+      // Todo tratar erro com toast
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onRemove = (toolData: ToolEntity) => {
+    setCurrentTool(toolData);
+    setShowModalRemove(true);
+  };
+
+  const onCancelModalRemove = () => {
+    setShowModalRemove(false);
+  };
 
   return (
-    <main className="App">
+    <main className="app">
       <Header title="VUTTR" subTitle="Very Useful Tools to Remember" />
 
-      {tools.map((tool) => (
-        <ToolItem key={tool.id} tool={tool} onClickRemove={onRemove} />
-      ))}
+      <SubHeader onChangeSearch={getToolsBySearch} />
+
+      <div className="app__content">
+        {fetching || loading ? (
+          <Loader active size="large" content="Carregando" />
+        ) : (
+          tools.map((tool) => (
+            <ToolItem key={tool.id} tool={tool} onClickRemove={onRemove} />
+          ))
+        )}
+      </div>
 
       <ModalRemove
         open={showModalRemove}

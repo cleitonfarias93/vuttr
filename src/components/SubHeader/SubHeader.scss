@@ -1,0 +1,52 @@
+@import 'styles/variables';
+
+.sub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin: 2rem 0;
+
+  &__search {
+    .ui.checkbox {
+      font-size: 2rem;
+      margin-left: 1rem;
+
+      label {
+        padding-left: 2.5rem;
+      }
+    }
+
+    .ui.icon.input {
+      input {
+        height: 5rem;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &__button-add.ui.button {
+    height: 5rem;
+
+    padding: 0 2.6rem;
+    margin: 0;
+
+    color: $white;
+    background-color: $blue;
+    border-radius: 0.5rem;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.036rem;
+
+    span {
+      margin-right: 1.5rem;
+    }
+
+    &:hover {
+      background-color: $darkBlue;
+    }
+  }
+}
