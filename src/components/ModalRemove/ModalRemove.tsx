@@ -4,7 +4,7 @@ import React from 'react';
 import { Modal, Icon, Button } from 'semantic-ui-react';
 
 // Models
-import { ToolEntity } from 'models/toolEntity';
+import { ToolEntity } from 'models';
 
 // Styles
 import './ModalRemove.scss';
