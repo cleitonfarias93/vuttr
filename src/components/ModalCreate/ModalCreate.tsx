@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 
 // Semantic UI Components
 import { Modal, Icon, Button } from 'semantic-ui-react';
 
 // Formik
-import { Formik, Form, Field, useField } from 'formik';
+import { Formik, Form, Field } from 'formik';
 
 // Models
 import { ModelForm } from 'models';
