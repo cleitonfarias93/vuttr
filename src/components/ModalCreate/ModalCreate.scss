@@ -54,10 +54,10 @@
           border: solid $darkestWhite 0.1rem;
           border-radius: 0.5rem;
           outline: 0;
-        }
 
-        .link::placeholder {
-          color: $lightestInk;
+          &::placeholder {
+            color: $lightestInk;
+          }
         }
 
         .description {
@@ -75,24 +75,32 @@
           font-size: 1.5rem;
         }
       }
-  
-      .ui.button {
-        min-width: 100%;
-        height: 5rem;
-  
-        padding: 0 2.6rem;
-          
-        color: $white;
-        background-color: $blue;
-        border-radius: 0.5rem;
-        font-size: 1.8rem;
-        line-height: 2.4rem;
-        letter-spacing: 0.036rem;
-  
-        &:hover {
-          background-color: $darkBlue;
+
+      &__action {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+
+        .ui.button {
+          min-width: 17.4rem;
+          height: 5rem;
+    
+          padding: 0 2.6rem;
+          margin-top: 2rem;
+            
+          color: $white;
+          background-color: $blue;
+          border-radius: 0.5rem;
+          font-size: 1.8rem;
+          line-height: 2.4rem;
+          letter-spacing: 0.036rem;
+    
+          &:hover {
+            background-color: $darkBlue;
+          }
         }
-      }
+      }  
     }
   }
 

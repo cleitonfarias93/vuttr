@@ -39,7 +39,7 @@ const ModalCreate: React.FC<Props> = ({ open, onOk, onClose, loading }) => {
   });
 
   const onSubmit = (tool: ModelForm) => {
-    const splittedTags = tags.split(' ');
+    const splittedTags = tags.split('/');
 
     const params: ModelForm = {
       ...tool,
@@ -83,7 +83,11 @@ const ModalCreate: React.FC<Props> = ({ open, onOk, onClose, loading }) => {
 
               <div className="form__input">
                 <label className="label-input">Tool link *</label>
-                <Field className="link" name="link" placeholder="http://site.com" />
+                <Field
+                  className="link"
+                  name="link"
+                  placeholder="http://site.com"
+                />
                 {errors.link && touched.link && (
                   <span className="message-error">{errors.link}</span>
                 )}
@@ -91,7 +95,12 @@ const ModalCreate: React.FC<Props> = ({ open, onOk, onClose, loading }) => {
 
               <div className="form__input">
                 <label className="label-input">Tool description *</label>
-                <Field className="description" name="description" component="textarea" rows="4" />
+                <Field
+                  className="description"
+                  name="description"
+                  component="textarea"
+                  rows="4"
+                />
                 {errors.description && touched.description && (
                   <span className="message-error">{errors.description}</span>
                 )}
@@ -99,10 +108,18 @@ const ModalCreate: React.FC<Props> = ({ open, onOk, onClose, loading }) => {
 
               <div className="form__input">
                 <label className="label-input">Tool tags</label>
-                <Field name="tags" onChange={updateTags} />
+                <Field
+                  name="tags"
+                  placeholder="use '/' to separate the tags eg: js/react"
+                  onChange={updateTags}
+                />
               </div>
 
-              <Button loading={loading} disabled={loading} type="submit">Add</Button>
+              <div className="form__action">
+                <Button loading={loading} disabled={loading} type="submit">
+                  Add
+                </Button>
+              </div>
             </Form>
           )}
         </Formik>
