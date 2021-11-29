@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 // Services
-import { getTools, deleteTool, getToolsByQuery, postTool } from 'services/VuttrService';
+import {
+  getTools,
+  deleteTool,
+  getToolsByQuery,
+  postTool,
+} from 'services/VuttrService';
 
 // Semantic UI Components
 import { Loader } from 'semantic-ui-react';
@@ -33,8 +38,7 @@ const App: React.FC = () => {
       const response = await getTools();
       setTools(response.data);
     } catch (error) {
-      // Todo tratar erro com toast
-      console.log(error);
+      alert('Error when trying to fetch tools');
     } finally {
       setFetching(false);
     }
@@ -51,8 +55,7 @@ const App: React.FC = () => {
       await postTool(tool);
       fetchTools();
     } catch (error) {
-      // Todo tratar erro com toast
-      console.log(error);
+      alert('Error while trying to create tool');
     } finally {
       setLoading(false);
       setShowModalCreate(false);
@@ -66,8 +69,7 @@ const App: React.FC = () => {
       await deleteTool(currentTool.id);
       fetchTools();
     } catch (error) {
-      // Todo tratar erro com toast
-      console.log(error);
+      alert('Error trying to delete tool');
     } finally {
       setLoading(false);
       setShowModalRemove(false);
@@ -80,8 +82,7 @@ const App: React.FC = () => {
       const response = await getToolsByQuery(params);
       setTools(response.data);
     } catch (error) {
-      // Todo tratar erro com toast
-      console.log(error);
+      alert('Error when searching create tool');
     } finally {
       setLoading(false);
     }
@@ -104,7 +105,10 @@ const App: React.FC = () => {
     <main className="app">
       <Header title="VUTTR" subTitle="Very Useful Tools to Remember" />
 
-      <SubHeader onChangeSearch={getToolsBySearch} openModal={() => setShowModalCreate(true)} />
+      <SubHeader
+        onChangeSearch={getToolsBySearch}
+        openModal={() => setShowModalCreate(true)}
+      />
 
       <div className="app__content">
         {fetching || loading ? (
