@@ -5,7 +5,11 @@ import { SearchParams, ModelForm } from 'models';
 
 import Api from './Api';
 
-export const postTool = (tool: ModelForm): Promise<AxiosResponse> => Api.post('/tools', tool);
+export const postTool = (tool: ModelForm): Promise<AxiosResponse> => Api.post('/tools', tool, {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 export const getTools = (): Promise<AxiosResponse> => Api.get('/tools');
 
