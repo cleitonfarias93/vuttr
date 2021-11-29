@@ -5,16 +5,19 @@ import { SearchParams, ModelForm } from 'models';
 
 import Api from './Api';
 
-export const postTool = (tool: ModelForm): Promise<AxiosResponse> => Api.post('/tools', tool, {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+export const postTool = (tool: ModelForm): Promise<AxiosResponse> =>
+  Api.post('/tools', tool, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
 export const getTools = (): Promise<AxiosResponse> => Api.get('/tools');
 
-export const getToolsByQuery = (params: SearchParams): Promise<AxiosResponse> => Api.get('/tools', {
-  params,
-});
+export const getToolsByQuery = (params: SearchParams): Promise<AxiosResponse> =>
+  Api.get('/tools', {
+    params,
+  });
 
-export const deleteTool = (id: number | string): Promise<AxiosResponse> => Api.delete(`/tools/${id}`);
+export const deleteTool = (id: number | string): Promise<AxiosResponse> =>
+  Api.delete(`/tools/${id}`);
