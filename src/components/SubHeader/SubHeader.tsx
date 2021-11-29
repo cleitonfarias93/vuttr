@@ -12,9 +12,10 @@ import './SubHeader.scss';
 
 interface Props {
   onChangeSearch: (params: SearchParams) => void;
+  openModal: () => void,
 }
 
-const SubHeader: React.FC<Props> = ({ onChangeSearch }) => {
+const SubHeader: React.FC<Props> = ({ onChangeSearch, openModal }) => {
   const [isSelectedTags, setIsSelectedTags] = useState<boolean>(false);
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +46,7 @@ const SubHeader: React.FC<Props> = ({ onChangeSearch }) => {
           onChange={handleChangeCheckBox}
         />
       </div>
-      <Button className="sub-header__button-add">
+      <Button className="sub-header__button-add" onClick={openModal}>
         <Icon name="plus" />
         <span>Add</span>
       </Button>
