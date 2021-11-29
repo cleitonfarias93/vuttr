@@ -80,5 +80,11 @@
         background-color: $darkGreen;
       }
     }
+
+    .ui.active.inline.loader {
+      &:after {
+        border-color: $blue transparent transparent;
+      }
+    }
   }
 }

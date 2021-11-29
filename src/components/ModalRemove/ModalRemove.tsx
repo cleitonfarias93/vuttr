@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Semantic UI Components
-import { Modal, Icon, Button } from 'semantic-ui-react';
+import { Modal, Icon, Button, Loader } from 'semantic-ui-react';
 
 // Models
 import { ToolEntity } from 'models';
@@ -14,9 +14,16 @@ interface Props {
   open: boolean;
   onOk: () => void;
   onClose: () => void;
+  loading: boolean;
 }
 
-const ModalRemove: React.FC<Props> = ({ tool, open, onOk, onClose }) => (
+const ModalRemove: React.FC<Props> = ({
+  tool,
+  open,
+  onOk,
+  onClose,
+  loading,
+}) => (
   <Modal
     className="modal-remove"
     open={open}
@@ -40,12 +47,18 @@ const ModalRemove: React.FC<Props> = ({ tool, open, onOk, onClose }) => (
     </Modal.Content>
 
     <Modal.Actions>
-      <Button className="button-cancel" onClick={onClose}>
-        Cancel
-      </Button>
-      <Button className="button-success" onClick={onOk}>
-        Yes, remove
-      </Button>
+      {!loading ? (
+        <>
+          <Button className="button-cancel" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button className="button-success" onClick={onOk}>
+            Yes, remove
+          </Button>
+        </>
+      ) : (
+        <Loader active inline Loader size="large" />
+      )}
     </Modal.Actions>
   </Modal>
 );
