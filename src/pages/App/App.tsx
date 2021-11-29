@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
 // Services
-import { getTools, deleteTool, getToolsByQuery } from 'services/VuttrService';
+import { getTools, deleteTool, getToolsByQuery, postTool } from 'services/VuttrService';
 
 // Semantic UI Components
-import { Loader, Dimmer } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 
 // Components
 import Header from 'components/Header/Header';
 import SubHeader from 'components/SubHeader';
 import ToolItem from 'components/ToolItem';
+import ModalCreate from 'components/ModalCreate';
 import ModalRemove from 'components/ModalRemove';
 
 // Models
-import { ToolEntity, ToolModel, SearchParams } from 'models';
+import { ToolEntity, ToolModel, SearchParams, ModelForm } from 'models';
 
 // Styles
 import './App.scss';
@@ -23,9 +24,11 @@ const App: React.FC = () => {
   const [fetching, setFetching] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
   const [showModalRemove, setShowModalRemove] = useState<boolean>(false);
+  const [showModalCreate, setShowModalCreate] = useState<boolean>(false);
   const [currentTool, setCurrentTool] = useState<ToolEntity>(ToolModel);
 
   const fetchTools = async () => {
+    setFetching(true);
     try {
       const response = await getTools();
       setTools(response.data);
@@ -40,6 +43,21 @@ const App: React.FC = () => {
   useEffect(() => {
     fetchTools();
   }, []);
+
+  const onConfirmModalCreate = async (tool: ModelForm) => {
+    setLoading(true);
+
+    try {
+      await postTool(tool);
+      fetchTools();
+    } catch (error) {
+      // Todo tratar erro com toast
+      console.log(error);
+    } finally {
+      setLoading(false);
+      setShowModalCreate(false);
+    }
+  };
 
   const onConfirmModalRemove = async () => {
     setLoading(true);
@@ -74,6 +92,10 @@ const App: React.FC = () => {
     setShowModalRemove(true);
   };
 
+  const onCancelModalCreate = () => {
+    setShowModalCreate(false);
+  };
+
   const onCancelModalRemove = () => {
     setShowModalRemove(false);
   };
@@ -82,7 +104,7 @@ const App: React.FC = () => {
     <main className="app">
       <Header title="VUTTR" subTitle="Very Useful Tools to Remember" />
 
-      <SubHeader onChangeSearch={getToolsBySearch} />
+      <SubHeader onChangeSearch={getToolsBySearch} openModal={() => setShowModalCreate(true)} />
 
       <div className="app__content">
         {fetching || loading ? (
@@ -94,11 +116,19 @@ const App: React.FC = () => {
         )}
       </div>
 
+      <ModalCreate
+        open={showModalCreate}
+        onOk={onConfirmModalCreate}
+        onClose={onCancelModalCreate}
+        loading={loading}
+      />
+
       <ModalRemove
         open={showModalRemove}
         tool={currentTool}
         onOk={onConfirmModalRemove}
         onClose={onCancelModalRemove}
+        loading={loading}
       />
     </main>
   );

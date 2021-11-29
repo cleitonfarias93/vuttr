@@ -1,0 +1,99 @@
+@import "styles/variables";
+
+.ui.modal.modal-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .header {
+    width: 100%;
+    border: none;
+
+    font-size: 2.6rem;
+    letter-spacing: 0.052rem;
+
+    .icon {
+      color: $blue;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+  
+      width: 57rem;
+      height: 61.6rem;
+  
+      margin: 0;
+  
+      font-size: 2rem;
+  
+      &__input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+  
+        width: 100%;
+  
+        margin-bottom: 2rem;
+  
+        input {
+          width: 100%;
+          height: 5rem;
+
+          padding: 0 1.5rem;
+  
+          background-color: $darkerWhite;
+          border: solid $darkestWhite 0.1rem;
+          border-radius: 0.5rem;
+          outline: 0;
+        }
+
+        .link::placeholder {
+          color: $lightestInk;
+        }
+
+        .description {
+          width: 100%;
+          resize: none;
+
+          background-color: $darkerWhite;
+          border: solid $darkestWhite 0.1rem;
+          border-radius: 0.5rem;
+          outline: 0;
+        }
+  
+        .message-error {
+          color: $red;
+          font-size: 1.5rem;
+        }
+      }
+  
+      .ui.button {
+        min-width: 100%;
+        height: 5rem;
+  
+        padding: 0 2.6rem;
+          
+        color: $white;
+        background-color: $blue;
+        border-radius: 0.5rem;
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+        letter-spacing: 0.036rem;
+  
+        &:hover {
+          background-color: $darkBlue;
+        }
+      }
+    }
+  }
+
+}
